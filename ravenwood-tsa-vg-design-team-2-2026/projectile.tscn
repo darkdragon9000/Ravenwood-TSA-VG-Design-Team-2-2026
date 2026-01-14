@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca3qbpnsisvk5"]
+
+[ext_resource type="Script" uid="uid://cnsf2eowmorlx" path="res://Scenes/projectile.gd" id="1_yr2qt"]
+[ext_resource type="Texture2D" uid="uid://pur3yof8p38c" path="res://brackeys_platformer_assets (2)/sprites/icon.svg" id="2_tl4hk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d4467"]
+
+[node name="Projectile" type="Area2D"]
+script = ExtResource("1_yr2qt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15625, 0.15625)
+texture = ExtResource("2_tl4hk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d4467")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

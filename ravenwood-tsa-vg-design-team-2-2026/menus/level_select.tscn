@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://csxk0t0t636ml"]
+
+[ext_resource type="Script" uid="uid://d4k7nf8g12n7b" path="res://menus/level_select.gd" id="1_x5a0v"]
+[ext_resource type="FontFile" uid="uid://s42ta6nnu516" path="res://brackeys_platformer_assets (2)/fonts/PixelOperator8.ttf" id="2_a00cd"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_x5a0v")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 649.0
+color = Color(0.4887237, 0.00053145975, 0.57336384, 1)
+
+[node name="Level1Button" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_left = 350.0
+offset_top = 200.0
+offset_right = 450.0
+offset_bottom = 300.0
+theme_override_fonts/font = ExtResource("2_a00cd")
+
+[node name="Level2Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 200.0
+offset_right = 650.0
+offset_bottom = 300.0
+theme_override_fonts/font = ExtResource("2_a00cd")
+
+[node name="Level3Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 200.0
+offset_right = 850.0
+offset_bottom = 300.0
+theme_override_fonts/font = ExtResource("2_a00cd")
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 156.0
+offset_right = 866.0
+offset_bottom = 179.0
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 500.0
+offset_right = 650.0
+offset_bottom = 550.0
+theme_override_fonts/font = ExtResource("2_a00cd")
+text = "Back"
