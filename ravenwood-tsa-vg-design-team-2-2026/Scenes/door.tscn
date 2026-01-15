@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtwuuwi7eosna"]
+
+[ext_resource type="Script" uid="uid://bwvsrisj7map2" path="res://Scenes/door.gd" id="1_p0e35"]
+[ext_resource type="Texture2D" uid="uid://cq2uwq5jnehro" path="res://brackeys_platformer_assets (2)/sprites/world_tileset.png" id="2_fahql"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ab4ky"]
+atlas = ExtResource("2_fahql")
+region = Rect2(128, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a43ba"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ab4ky")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_burcv"]
+radius = 9.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0e35"]
+size = Vector2(159, 136.5)
+
+[node name="Door" type="StaticBody2D"]
+script = ExtResource("1_p0e35")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_a43ba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_burcv")
+
+[node name="DoorTrigger" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorTrigger"]
+shape = SubResource("RectangleShape2D_p0e35")
+
+[connection signal="body_entered" from="DoorTrigger" to="." method="_on_door_trigger_body_entered"]

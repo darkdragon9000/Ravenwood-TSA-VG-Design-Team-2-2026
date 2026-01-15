@@ -3,7 +3,10 @@ extends CharacterBody2D
 # Stats
 @export var max_health: float = 100.0
 @export var damage_per_hit: float = 10.0
+@export var next_level_unlock: int = 2  # Set in inspector per level
 var health: float
+var fight_started: bool = false
+var victory_item = preload("res://victory_item.tscn")
 
 # Movement - vertical only
 @export var float_speed: float = 50.0
@@ -13,8 +16,8 @@ var move_direction: float = 1.0
 
 # Move/Wait pattern
 var is_moving: bool = true
-@export var move_time: float = 2.0  # How long to move
-@export var wait_time: float = 1.0  # How long to wait
+@export var move_time: float = 2.0
+@export var wait_time: float = 1.0
 var state_timer: float = 0.0
 
 # Attack
@@ -27,9 +30,6 @@ var projectile_scene = preload("res://enemy_projectile.tscn")
 @onready var shoot_timer = $ShootTimer
 @onready var health_bar = $HealthBar
 
-# Item to drop
-var victory_item_scene = preload("res://victory_item.tscn")
-
 func _ready():
 	add_to_group("Enemy")
 	
@@ -41,13 +41,16 @@ func _ready():
 	state_timer = move_time
 	
 	shoot_timer.timeout.connect(_on_shoot_timer_timeout)
+	shoot_timer.stop()
 
 func _physics_process(delta):
+	if not fight_started:
+		return
+	
 	# Update state timer
 	state_timer -= delta
 	
 	if state_timer <= 0:
-		# Switch between moving and waiting
 		is_moving = !is_moving
 		if is_moving:
 			state_timer = move_time
@@ -55,12 +58,10 @@ func _physics_process(delta):
 			state_timer = wait_time
 	
 	# Movement
-	#if is_moving:
-		#velocity.y = float_speed * move_direction
-		#sprite.play("move")
-	#else:
-		#velocity.y = 0
-		#sprite.play("idle")
+	if is_moving:
+		velocity.y = float_speed * move_direction
+	else:
+		velocity.y = 0
 	
 	velocity.x = 0
 	move_and_slide()
@@ -80,12 +81,15 @@ func _physics_process(delta):
 	if player:
 		sprite.flip_h = player.global_position.x > global_position.x
 
+func start_fight():
+	print("Boss fight started!")
+	fight_started = true
+	shoot_timer.start()
+
 func _on_shoot_timer_timeout():
 	shoot()
 
 func shoot():
-	#sprite.play("attack")
-	
 	var player = get_tree().get_first_node_in_group("Player")
 	if player == null:
 		return
@@ -115,14 +119,15 @@ func take_damage(amount: float):
 	print("Boss health: ", health)
 	
 	if health <= 0:
-		die()
+		call_deferred("die")
 
 func die():
 	print("Boss defeated!")
 	Global.boss_defeated.emit()
 	
-	var item = victory_item_scene.instantiate()
+	var item = victory_item.instantiate()
 	item.position = global_position
+	item.next_level_unlock = next_level_unlock  # Pass to victory item
 	get_tree().current_scene.add_child(item)
 	
 	queue_free()

@@ -45,6 +45,10 @@ height = 16.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_cvnsp")
+speed = 200.0
+jump_force = -325.0
+coyote_time = 0.125
+focus_drain = 7.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
@@ -65,4 +69,5 @@ one_shot = true
 
 [node name="InvincibleTimer" type="Timer" parent="."]
 process_mode = 3
+wait_time = 0.5
 one_shot = true

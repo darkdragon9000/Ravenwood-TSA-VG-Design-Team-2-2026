@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bj5uwym3jtb5s"]
+[gd_scene load_steps=4 format=3 uid="uid://bj5uwym3jtb5s"]
 
 [ext_resource type="FontFile" uid="uid://s42ta6nnu516" path="res://brackeys_platformer_assets (2)/fonts/PixelOperator8.ttf" id="1_jxero"]
 [ext_resource type="Script" uid="uid://b6f4mgnfrhtpo" path="res://Scenes/ui.gd" id="1_qdvrb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdvrb"]
+bg_color = Color(1, 0.20784314, 0.20784314, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_qdvrb")
@@ -42,4 +49,5 @@ text = "Health:"
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_jxero")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qdvrb")
 show_percentage = false

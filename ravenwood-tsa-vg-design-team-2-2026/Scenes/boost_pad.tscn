@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://2am5o4j2axoe"]
+
+[ext_resource type="Script" uid="uid://lejpnk2s7e51" path="res://Scenes/boost_pad.gd" id="1_4ju1x"]
+[ext_resource type="Texture2D" uid="uid://46tm31g1bo7" path="res://brackeys_platformer_assets (2)/sprites/platforms.png" id="2_q712s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfbwa"]
+atlas = ExtResource("2_q712s")
+region = Rect2(16, 48, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_als6l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfbwa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1w3l"]
+size = Vector2(32, 9)
+
+[node name="BoostPad" type="Area2D"]
+script = ExtResource("1_4ju1x")
+min_bounce = -375.0
+max_bounce = -575.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_als6l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_u1w3l")
