@@ -16,7 +16,7 @@ var was_on_floor: bool = false
 # Shooting
 var projectile_scene = preload("res://projectile.tscn")
 var can_shoot: bool = true
-@export var shot_cost = 10
+@export var shot_cost = -10
 
 # Invincibility
 var is_invincible: bool = false
@@ -25,6 +25,8 @@ var is_invincible: bool = false
 var focus_mode: bool = false
 @export var focus_drain: float = 10.0
 var focus_time_scale: float = 0.5
+var jump_sound: AudioStreamPlayer
+var jump_sfx = preload("res://audio/sfx/jump.wav")
 
 # Nodes
 @onready var sprite = $AnimatedSprite2D
@@ -33,6 +35,11 @@ var focus_time_scale: float = 0.5
 
 func _ready():
 	add_to_group("Player")
+	
+	jump_sound = AudioStreamPlayer.new()
+	jump_sound.stream = jump_sfx
+	jump_sound.bus = "SFX"
+	add_child(jump_sound)
 	
 	shoot_timer.timeout.connect(_on_shoot_timer_timeout)
 	shoot_timer.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -43,6 +50,7 @@ func _ready():
 func _physics_process(delta):
 	# Focus mode
 	handle_focus_mode(delta)
+	
 	
 	# Handle coyote time
 	if is_on_floor():
@@ -68,7 +76,8 @@ func _physics_process(delta):
 	if jump_buffer_timer > 0 and coyote_timer > 0:
 		velocity.y = jump_force
 		jump_buffer_timer = 0.0  # Clear buffer
-		coyote_timer = 0.0  # Clear coyote time
+		coyote_timer = 0.0 
+		jump_sound.play()  # Clear coyote time
 	
 	# Horizontal movement
 	var direction = Input.get_axis("move_left", "move_right")
@@ -87,6 +96,7 @@ func _physics_process(delta):
 	# Shooting with Z key
 	if Input.is_action_just_pressed("shoot") and can_shoot:
 		shoot()
+	update_animation()
 
 func handle_focus_mode(delta):
 	if Input.is_action_pressed("focus") and Global.power > 0:
@@ -126,18 +136,24 @@ func take_damage(amount: float):
 		return
 	
 	Global.take_damage(amount)
+	AudioManager.play_damage()
 	
 	is_invincible = true
 	invincible_timer.start()
 	sprite.modulate = Color(1, 0.3, 0.3, 0.7)
 
 func _on_invincible_timer_timeout():
+	
 	is_invincible = false
 	if not focus_mode:
 		sprite.modulate = Color(1, 1, 1, 1)
 	else:
 		sprite.modulate = Color(0.6, 0.8, 1, 1)
-
+func update_animation():
+	if velocity.x != 0:
+		sprite.play("walk")
+	else:
+		sprite.play("idle")
 func die():
 	print("Game Over!")
 	Engine.time_scale = 0.5

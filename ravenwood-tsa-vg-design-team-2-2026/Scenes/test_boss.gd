@@ -3,10 +3,14 @@ extends CharacterBody2D
 # Stats
 @export var max_health: float = 100.0
 @export var damage_per_hit: float = 10.0
-@export var next_level_unlock: int = 2  # Set in inspector per level
+@export var next_level_unlock: int = 2
 var health: float
 var fight_started: bool = false
+var half_health_triggered: bool = false
 var victory_item = preload("res://victory_item.tscn")
+
+# Sprite - set in inspector per boss
+@export var boss_sprites: SpriteFrames = null
 
 # Movement - vertical only
 @export var float_speed: float = 50.0
@@ -33,6 +37,10 @@ var projectile_scene = preload("res://enemy_projectile.tscn")
 func _ready():
 	add_to_group("Enemy")
 	
+	# Apply custom sprites if set
+	if boss_sprites != null:
+		sprite.sprite_frames = boss_sprites
+	
 	health = max_health
 	health_bar.max_value = max_health
 	health_bar.value = health
@@ -47,7 +55,6 @@ func _physics_process(delta):
 	if not fight_started:
 		return
 	
-	# Update state timer
 	state_timer -= delta
 	
 	if state_timer <= 0:
@@ -57,7 +64,6 @@ func _physics_process(delta):
 		else:
 			state_timer = wait_time
 	
-	# Movement
 	if is_moving:
 		velocity.y = float_speed * move_direction
 	else:
@@ -66,17 +72,14 @@ func _physics_process(delta):
 	velocity.x = 0
 	move_and_slide()
 	
-	# Reverse direction at range limits
 	if global_position.y > start_y + float_range:
 		move_direction = -1.0
 	elif global_position.y < start_y - float_range:
 		move_direction = 1.0
 	
-	# Reverse if hitting ceiling/floor
 	if is_on_floor() or is_on_ceiling():
 		move_direction *= -1.0
 	
-	# Face the player
 	var player = get_tree().get_first_node_in_group("Player")
 	if player:
 		sprite.flip_h = player.global_position.x > global_position.x
@@ -112,6 +115,10 @@ func take_damage(amount: float):
 	health -= amount
 	health_bar.value = health
 	
+	if health <= max_health / 2.0 and not half_health_triggered:
+		half_health_triggered = true
+		AudioManager.play_boss_half_health()
+	
 	sprite.modulate = Color(1, 0.3, 0.3, 1)
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1, 1)
@@ -127,7 +134,7 @@ func die():
 	
 	var item = victory_item.instantiate()
 	item.position = global_position
-	item.next_level_unlock = next_level_unlock  # Pass to victory item
+	item.next_level_unlock = next_level_unlock
 	get_tree().current_scene.add_child(item)
 	
 	queue_free()

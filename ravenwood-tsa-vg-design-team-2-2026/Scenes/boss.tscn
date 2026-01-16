@@ -1,7 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://k2rsrgkr2ev7"]
+[gd_scene load_steps=5 format=3 uid="uid://k2rsrgkr2ev7"]
 
 [ext_resource type="Script" uid="uid://b53xbtepw5tc4" path="res://Scenes/test_boss.gd" id="1_8flpb"]
-[ext_resource type="Texture2D" uid="uid://42kvb3uhhcq" path="res://brackeys_platformer_assets (2)/sprites/slime_purple.png" id="2_7i6gw"]
+[ext_resource type="SpriteFrames" uid="uid://dncwauj6upk3" path="res://boss_test_sprites.tres" id="2_wwfse"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwfse"]
+size = Vector2(355, 434.5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwfse"]
 bg_color = Color(1, 0.20784314, 0.20784314, 1)
@@ -9,45 +12,6 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kikca"]
-atlas = ExtResource("2_7i6gw")
-region = Rect2(0, 24, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mdyg5"]
-atlas = ExtResource("2_7i6gw")
-region = Rect2(24, 24, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1l0i7"]
-atlas = ExtResource("2_7i6gw")
-region = Rect2(48, 24, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jqs5d"]
-atlas = ExtResource("2_7i6gw")
-region = Rect2(72, 24, 24, 24)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_kitim"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kikca")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mdyg5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1l0i7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jqs5d")
-}],
-"loop": true,
-"name": &"default",
-"speed": 12.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_k6n6p"]
-radius = 7.0
 
 [node name="TestBoss" type="CharacterBody2D"]
 script = ExtResource("1_8flpb")
@@ -59,24 +23,25 @@ wait_time = 2.0
 shots_per_attack = 1
 shot_spread = 0.1
 
-[node name="HealthBar" type="ProgressBar" parent="."]
-custom_minimum_size = Vector2(50, 4)
-offset_left = -25.0
-offset_top = -24.0
-offset_right = 25.0
-offset_bottom = -16.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_wwfse")
-show_percentage = false
-
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -12)
-sprite_frames = SubResource("SpriteFrames_kitim")
-autoplay = "default"
+position = Vector2(-1.375, -52.125)
+scale = Vector2(0.25, 0.25)
+sprite_frames = ExtResource("2_wwfse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7)
-shape = SubResource("CircleShape2D_k6n6p")
+position = Vector2(-0.625, -54.3125)
+scale = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_wwfse")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(100, 10)
+offset_left = -50.0
+offset_top = -124.0
+offset_right = 50.0
+offset_bottom = -116.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_wwfse")
+show_percentage = false

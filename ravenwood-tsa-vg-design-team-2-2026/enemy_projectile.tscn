@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c0pdrqbrp8jjx"]
 
-[ext_resource type="Texture2D" uid="uid://pur3yof8p38c" path="res://brackeys_platformer_assets (2)/sprites/icon.svg" id="1_33pam"]
 [ext_resource type="Script" uid="uid://bqbt124xtw8c4" path="res://Scenes/enemy_projectile.gd" id="1_ibebl"]
+[ext_resource type="Texture2D" uid="uid://ctnma2ao3xl6r" path="res://brackeys_platformer_assets (2)/sprites/Enenmy projectile.png" id="2_vpq67"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ibebl"]
 
@@ -9,13 +9,14 @@
 script = ExtResource("1_ibebl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1.1920929e-07, -1.1920929e-07)
+rotation = 3.1415927
 scale = Vector2(0.15625, 0.15625)
-texture = ExtResource("1_33pam")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ibebl")
+texture = ExtResource("2_vpq67")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_ibebl")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

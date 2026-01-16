@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://be6gwq074ql7r"]
+[gd_scene load_steps=19 format=3 uid="uid://be6gwq074ql7r"]
 
 [ext_resource type="Script" uid="uid://ty7mos8y5sj" path="res://Scenes/collectible.gd" id="1_athsx"]
 [ext_resource type="Texture2D" uid="uid://d1qhec3r5upa6" path="res://brackeys_platformer_assets (2)/sprites/coin.png" id="1_fwdfn"]
+[ext_resource type="Texture2D" uid="uid://bph61nrt2ykth" path="res://brackeys_platformer_assets (2)/sprites/Collectible.png" id="3_7xeth"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_athsx"]
 radius = 6.0
@@ -54,6 +55,10 @@ region = Rect2(160, 0, 16, 16)
 atlas = ExtResource("1_fwdfn")
 region = Rect2(176, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_565ub"]
+atlas = ExtResource("3_7xeth")
+region = Rect2(0, 0, 8, 8)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_565ub"]
 animations = [{
 "frames": [{
@@ -96,6 +101,14 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_565ub")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }]
 
 [node name="Collectible" type="Area2D"]
@@ -105,7 +118,9 @@ script = ExtResource("1_athsx")
 shape = SubResource("CircleShape2D_athsx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.625, 1.625)
 sprite_frames = SubResource("SpriteFrames_565ub")
-autoplay = "default"
+animation = &"new_animation"
+autoplay = "new_animation"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

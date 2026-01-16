@@ -10,16 +10,18 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 	start_y = position.y
 
-func _process(delta):
-	#Floating animation
-	float_offset += delta * 3.0
-	position.y = start_y + sin(float_offset) * 5.0
+#func _process(delta):
+	##Floating animation
+	#float_offset += delta * 3.0
+	#position.y = start_y + sin(float_offset) * 5.0
 	
 
 
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		print("Level Complete! Unlocked level ", next_level_unlock)
+		
+		Global.complete_level(Global.current_level)
 		
 		# Unlock next level
 		Global.unlock_level(next_level_unlock)

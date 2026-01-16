@@ -9,7 +9,7 @@ var collectible_scene = preload("res://Scenes/collectible.tscn")
 
 var is_dead: bool = false
 
-@onready var sprite = $AnimatedSprite2D
+@onready var sprite = $Sprite2D
 @onready var hitbox = $HitboxArea
 
 func _ready():
@@ -48,7 +48,7 @@ func _on_hitbox_entered(body):
 			call_deferred("die")
 		else:
 			# Player touched enemy from side/below
-			body.take_damage(10.0)
+			body.take_damage(20.0)
 
 func take_damage(amount: float):
 	if is_dead:
@@ -63,7 +63,7 @@ func die():
 	
 	# Drop collectible
 	var orb = collectible_scene.instantiate()
-	orb.position = global_position
+	orb.position = global_position 
 	orb.power_value = drop_value
 	get_tree().current_scene.add_child(orb)
 	

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dkyg6l5i46bhi"
+path="res://.godot/imported/table defeat.mp3-9ebb2ac0768845d0fc721c50fc2024b9.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/table defeat.mp3"
+dest_files=["res://.godot/imported/table defeat.mp3-9ebb2ac0768845d0fc721c50fc2024b9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

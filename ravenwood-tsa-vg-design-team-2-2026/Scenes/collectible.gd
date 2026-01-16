@@ -14,5 +14,6 @@ extends Area2D
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		Global.add_power(power_value)
+		AudioManager.play_collect()
 		print("+" , power_value, " ", Global.get_power_name())
 		queue_free()

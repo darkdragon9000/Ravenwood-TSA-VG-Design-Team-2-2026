@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://dncwauj6upk3"]
+
+[ext_resource type="Texture2D" uid="uid://dk3m6j6htg4bs" path="res://brackeys_platformer_assets (2)/sprites/TestBoss.png" id="1_wkstd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmaew"]
+atlas = ExtResource("1_wkstd")
+region = Rect2(0, 0, 357, 431)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmaew")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]

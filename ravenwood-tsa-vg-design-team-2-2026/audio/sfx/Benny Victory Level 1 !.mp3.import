@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cejpgkc42q2g"
+path="res://.godot/imported/Benny Victory Level 1 !.mp3-9e0faf40eee3dd3da1ae24197f76ef06.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/Benny Victory Level 1 !.mp3"
+dest_files=["res://.godot/imported/Benny Victory Level 1 !.mp3-9e0faf40eee3dd3da1ae24197f76ef06.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

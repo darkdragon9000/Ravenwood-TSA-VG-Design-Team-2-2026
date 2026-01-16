@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bot2mje83xoml"
+path="res://.godot/imported/Table Mocking.mp3-90a2940e9565a29937702a4fc2386753.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/Table Mocking.mp3"
+dest_files=["res://.godot/imported/Table Mocking.mp3-90a2940e9565a29937702a4fc2386753.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
