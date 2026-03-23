@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://k2rsrgkr2ev7"]
 
 [ext_resource type="Script" uid="uid://b53xbtepw5tc4" path="res://Scenes/test_boss.gd" id="1_8flpb"]
-[ext_resource type="SpriteFrames" uid="uid://dncwauj6upk3" path="res://boss_test_sprites.tres" id="2_wwfse"]
+[ext_resource type="SpriteFrames" uid="uid://dncwauj6upk3" path="res://brackeys_platformer_assets (2)/boss_test_sprites.tres" id="2_wwfse"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwfse"]
 size = Vector2(355, 434.5)

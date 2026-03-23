@@ -2,7 +2,7 @@ extends StaticBody2D
 
 @onready var collision_shape_2d = $CollisionShape2D
 
-var victory_item = preload("res://victory_item.tscn")
+var victory_item = preload("res://Scenes/victory_item.tscn")
 
 
 

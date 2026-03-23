@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bj5uwym3jtb5s" path="res://Scenes/ui.tscn" id="2_btoec"]
 [ext_resource type="PackedScene" uid="uid://be6gwq074ql7r" path="res://Scenes/collectible.tscn" id="3_gwceb"]
 [ext_resource type="PackedScene" uid="uid://hxpn5alvndj0" path="res://Scenes/killzone.tscn" id="4_l53as"]
-[ext_resource type="SpriteFrames" uid="uid://dncwauj6upk3" path="res://boss_test_sprites.tres" id="6_3sk1a"]
+[ext_resource type="SpriteFrames" uid="uid://dncwauj6upk3" path="res://brackeys_platformer_assets (2)/boss_test_sprites.tres" id="6_3sk1a"]
 [ext_resource type="PackedScene" uid="uid://k2rsrgkr2ev7" path="res://Scenes/boss.tscn" id="6_btoec"]
 [ext_resource type="PackedScene" uid="uid://ck0vh1xb028c8" path="res://Scenes/enemy.tscn" id="7_gwceb"]
 [ext_resource type="PackedScene" uid="uid://cb5r4i8gq76xu" path="res://Scenes/boss_trigger.tscn" id="8_l53as"]

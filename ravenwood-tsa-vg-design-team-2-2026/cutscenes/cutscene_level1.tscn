@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cvqy66dagc112"]
 
-[ext_resource type="Script" uid="uid://do5q6u00yledn" path="res://video_cutscene.gd" id="1_he64w"]
+[ext_resource type="Script" uid="uid://do5q6u00yledn" path="res://Scenes/video_cutscene.gd" id="1_he64w"]
 
 [node name="VideoCutscene" type="Control"]
 layout_mode = 3

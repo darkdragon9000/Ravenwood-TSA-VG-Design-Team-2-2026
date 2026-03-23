@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ck0vh1xb028c8" path="res://Scenes/enemy.tscn" id="5_0unm6"]
 [ext_resource type="PackedScene" uid="uid://2am5o4j2axoe" path="res://Scenes/boost_pad.tscn" id="6_q42ux"]
 [ext_resource type="PackedScene" uid="uid://k2rsrgkr2ev7" path="res://Scenes/boss.tscn" id="7_wi0qq"]
-[ext_resource type="SpriteFrames" uid="uid://drusls0ii7iu4" path="res://boss_phone_sprites.tres" id="8_lsnkt"]
+[ext_resource type="SpriteFrames" uid="uid://drusls0ii7iu4" path="res://brackeys_platformer_assets (2)/boss_phone_sprites.tres" id="8_lsnkt"]
 [ext_resource type="PackedScene" uid="uid://cb5r4i8gq76xu" path="res://Scenes/boss_trigger.tscn" id="8_s3q8p"]
 [ext_resource type="PackedScene" uid="uid://hxpn5alvndj0" path="res://Scenes/killzone.tscn" id="9_jq78i"]
 [ext_resource type="AudioStream" uid="uid://d0sxv605ch5rl" path="res://audio/New-Recording-234.ogg" id="11_wj73x"]

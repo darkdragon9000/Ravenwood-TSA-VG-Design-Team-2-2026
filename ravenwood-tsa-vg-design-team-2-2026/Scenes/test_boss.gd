@@ -7,7 +7,7 @@ extends CharacterBody2D
 var health: float
 var fight_started: bool = false
 var half_health_triggered: bool = false
-var victory_item = preload("res://victory_item.tscn")
+var victory_item = preload("res://Scenes/victory_item.tscn")
 
 # Sprite - set in inspector per boss
 @export var boss_sprites: SpriteFrames = null
@@ -25,7 +25,7 @@ var is_moving: bool = true
 var state_timer: float = 0.0
 
 # Attack
-var projectile_scene = preload("res://enemy_projectile.tscn")
+var projectile_scene = preload("res://Scenes/enemy_projectile.tscn")
 @export var shots_per_attack: int = 3
 @export var shot_spread: float = 0.3
 

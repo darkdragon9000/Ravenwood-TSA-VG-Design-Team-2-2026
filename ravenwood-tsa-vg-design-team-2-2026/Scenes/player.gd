@@ -14,7 +14,7 @@ var jump_buffer_timer: float = 0.0
 var was_on_floor: bool = false
 
 # Shooting
-var projectile_scene = preload("res://projectile.tscn")
+var projectile_scene = preload("res://Scenes/projectile.tscn")
 var can_shoot: bool = true
 @export var shot_cost = -10
 
