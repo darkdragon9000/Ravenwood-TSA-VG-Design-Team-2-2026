@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://cyso2ohg256yd"]
+
+[ext_resource type="Script" uid="uid://v1x7q831r6ai" path="res://character_body_2d.gd" id="1_ij6vw"]
+[ext_resource type="Texture2D" uid="uid://djdrgso8l3i5b" path="res://brackeys_platformer_assets (2)/sprites/child_benny.png" id="2_ij6vw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghijl"]
+atlas = ExtResource("2_ij6vw")
+region = Rect2(0, 2, 90, 158)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ij6vw"]
+atlas = ExtResource("2_ij6vw")
+region = Rect2(91, 2, 90, 158)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44cfe"]
+atlas = ExtResource("2_ij6vw")
+region = Rect2(182, 2, 90, 158)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dd465"]
+atlas = ExtResource("2_ij6vw")
+region = Rect2(273, 2, 90, 158)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhvu3"]
+atlas = ExtResource("2_ij6vw")
+region = Rect2(0, 160, 90, 158)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sjlk"]
+atlas = ExtResource("2_ij6vw")
+region = Rect2(91, 160, 90, 158)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qp52p"]
+atlas = ExtResource("2_ij6vw")
+region = Rect2(182, 160, 90, 158)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ct3r"]
+atlas = ExtResource("2_ij6vw")
+region = Rect2(273, 160, 90, 158)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qnedo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghijl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ij6vw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44cfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dd465")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhvu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sjlk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qp52p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ct3r")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7x6s7"]
+size = Vector2(70, 104)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1472145737]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_ij6vw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=49282034]
+modulate = Color(0.7664586, 0.6984967, 0.29101425, 1)
+position = Vector2(-2, -199)
+scale = Vector2(0.7, 0.635)
+sprite_frames = SubResource("SpriteFrames_qnedo")
+animation = &"run"
+frame_progress = 0.69029135
+offset = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=851040988]
+position = Vector2(3, -200)
+shape = SubResource("RectangleShape2D_7x6s7")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=930242748]
+offset = Vector2(0, -150)
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=1050322520]
+position = Vector2(-4, -202)

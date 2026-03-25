@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b5srunq2e2c0q"]
+
+[ext_resource type="Script" uid="uid://bb7j8x101gfxf" path="res://sad_kid.gd" id="1_s7yvr"]
+[ext_resource type="Texture2D" uid="uid://bahjd01fj631t" path="res://brackeys_platformer_assets (2)/sprites/enemy.png" id="2_s7yvr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7yvr"]
+size = Vector2(53, 98)
+
+[node name="Sad_Kid" type="Area2D" unique_id=1507951241]
+z_index = 1
+script = ExtResource("1_s7yvr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1492947043]
+position = Vector2(-51.000008, 52)
+scale = Vector2(0.15, 0.153)
+texture = ExtResource("2_s7yvr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=780423500]
+position = Vector2(-50.5, 53)
+shape = SubResource("RectangleShape2D_s7yvr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

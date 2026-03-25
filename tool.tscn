@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://ba2bdstlmb247"]
+
+[ext_resource type="Texture2D" uid="uid://bwb0oevuromal" path="res://heyyheyy/brackeys_platformer_assets (2)/sprites/flashlight.png" id="1_6tnx1"]
+
+[sub_resource type="GDScript" id="GDScript_6tnx1"]
+script/source = "extends Area2D
+
+@export_enum(\"flashlight\", \"teddy\") var tool_type: String = \"flashlight\"
+
+func _ready():
+	if body_entered.is_connected(_on_body_entered):
+		body_entered.disconnect(_on_body_entered)
+	body_entered.connect(_on_body_entered)
+
+func _on_body_entered(body):
+	if body.is_in_group(\"Player\"):
+		# 1. Increase Strength (This moves the Progress Bar)
+		if \"strength\" in body:
+			body.strength += 25
+		
+		# 2. Update the specific item counts
+		if tool_type == \"flashlight\":
+			body.flashlights_collected += 1
+		elif tool_type == \"teddy\":
+			body.teddybears_collected += 1
+		
+		# 3. FORCE the UI to refresh
+		if body.has_method(\"update_mood\"):
+			body.update_mood()
+			
+		# 4. Check for win condition
+		body.check_level_3_win()
+		
+		if AudioManager.has_method(\"play_collect\"):
+			AudioManager.play_collect()
+		queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6boh"]
+size = Vector2(308, 336)
+
+[node name="Tool" type="Area2D" unique_id=156636326]
+scale = Vector2(0.2, 0.2)
+script = SubResource("GDScript_6tnx1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1037246668]
+texture = ExtResource("1_6tnx1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=13051809]
+position = Vector2(-10.5, -3)
+shape = SubResource("RectangleShape2D_l6boh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

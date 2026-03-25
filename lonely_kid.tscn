@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dvkx24thdmr5i"]
+
+[ext_resource type="Script" uid="uid://buw821w4wgl8p" path="res://lonely_kid.gd" id="1_wdauo"]
+[ext_resource type="Texture2D" uid="uid://cnt1f5cnojqxs" path="res://brackeys_platformer_assets (2)/sprites/lonely_kid.png" id="2_wdauo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdauo"]
+size = Vector2(35, 74)
+
+[node name="lonely_kid" type="Area2D" unique_id=1036165549]
+script = ExtResource("1_wdauo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=522235949]
+position = Vector2(3.9999924, 6)
+scale = Vector2(0.248, 0.292)
+texture = ExtResource("2_wdauo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=973666226]
+position = Vector2(0.5, 5)
+shape = SubResource("RectangleShape2D_wdauo")
