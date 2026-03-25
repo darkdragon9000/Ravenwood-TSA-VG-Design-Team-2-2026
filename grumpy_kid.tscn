@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ch4erk4sfceyk"]
+
+[ext_resource type="Texture2D" uid="uid://dhjjqrl0p8sg3" path="res://brackeys_platformer_assets (2)/sprites/grumpy_kid.png" id="1_7xhwv"]
+[ext_resource type="Script" uid="uid://crfpssde6q6fa" path="res://grumpy_kid.gd" id="1_dtvur"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtvur"]
+size = Vector2(52, 106.5)
+
+[node name="grumpy_kid" type="Area2D" unique_id=657330949]
+script = ExtResource("1_dtvur")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=932264729]
+position = Vector2(-68.50001, 96.83267)
+scale = Vector2(0.24019608, 0.2430516)
+texture = ExtResource("1_7xhwv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=382312533]
+position = Vector2(-69, 86)
+shape = SubResource("RectangleShape2D_dtvur")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

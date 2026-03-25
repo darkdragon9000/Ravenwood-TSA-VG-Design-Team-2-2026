@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://chvreiss83ud4"]
+
+[ext_resource type="Texture2D" uid="uid://chf7dvam43hsa" path="res://brackeys_platformer_assets (2)/sprites/friend.png" id="1_h35v6"]
+
+[sub_resource type="GDScript" id="GDScript_3hdib"]
+script/source = "extends Area2D
+@export var float_amplitude: float = 20.0 
+@export var float_speed: float = 3.0     
+
+var start_y: float
+
+func _on_body_entered(body: Node2D) -> void:
+	# Check if the thing touching the friend is the player
+	if body is CharacterBody2D:
+		body.strength += 50 # Give 5 points
+		body.update_mood() # Tell the player to update their bar/speed
+		queue_free()       # Make the friend disappear
+
+func _ready():
+	# This ensures we grab the position BEFORE any processing happens
+	start_y = position.y
+
+func _process(delta):
+	# We use 'Time.get_ticks_msec()' because it never resets
+	var time = Time.get_ticks_msec() / 1000.0
+	var offset = sin(time * float_speed) * float_amplitude
+	
+	# Force the position
+	position.y = start_y + offset
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h35v6"]
+size = Vector2(59, 98)
+
+[node name="Friend" type="Area2D" unique_id=706937067]
+script = SubResource("GDScript_3hdib")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1811849783]
+position = Vector2(1.4999981, -0.4999981)
+scale = Vector2(0.30499998, 0.30838326)
+texture = ExtResource("1_h35v6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=595375078]
+position = Vector2(3.5, -1)
+shape = SubResource("RectangleShape2D_h35v6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

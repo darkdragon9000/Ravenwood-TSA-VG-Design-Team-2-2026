@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://b24iuu2xh6dlw"]
+
+[ext_resource type="FontFile" uid="uid://s42ta6nnu516" path="res://brackeys_platformer_assets (2)/fonts/PixelOperator8.ttf" id="1_2oj7f"]
+
+[sub_resource type="GDScript" id="GDScript_knk2d"]
+script/source = "extends Control
+
+@onready var level1_btn = $Level1Button
+@onready var level2_btn = $Level2Button
+@onready var level3_btn = $Level3Button
+@onready var back_btn = $BackButton
+@onready var all_complete_label = $AllCompleteLabel
+
+# --- CHANGE THESE PATHS TO YOUR CHILD LEVEL FILES ---
+var level_cutscenes = {
+	1: \"res://cutscenes/cutscene_child1_prescene.tscn\",
+	2: \"res://cutscenes/cutscene_child2_prescene.tscn\",
+	3: \"res://cutscenes/cutscene_child3_prescene.tscn\"
+}
+
+var level_scenes = {
+	1: \"res://child_level1.tscn\",
+	2: \"res://child_level_2.tscn\",
+	3: \"res://child_level3.tscn\"
+}
+
+func _ready():
+	# Connect buttons
+	level1_btn.pressed.connect(func(): load_level(1))
+	level2_btn.pressed.connect(func(): load_level(2))
+	level3_btn.pressed.connect(func(): load_level(3))
+	back_btn.pressed.connect(_on_back_pressed)
+	
+	# Hide the \"Complete\" label by default
+	all_complete_label.visible = false
+	
+	update_button_states()
+	check_all_complete()
+
+func update_button_states():
+	# LEVEL 1: Always available
+	level1_btn.disabled = false
+	if Global.is_level_completed(1) or Global.is_level_completed(1):
+		level1_btn.text = \"Level 1\\nDaycare\\n✓ Complete\"
+	else:
+		level1_btn.text = \"Level 1\\nDaycare\"
+	
+	# LEVEL 2: Available if Unlocked OR Completed
+	if Global.is_level_unlocked(2) or Global.is_level_completed(2):
+		level2_btn.disabled = false
+		if Global.is_level_completed(2):
+			level2_btn.text = \"Level 2\\nSharing\\n✓ Complete\"
+		else:
+			level2_btn.text = \"Level 2\\nSharing\"
+	else:
+		level2_btn.disabled = true
+		level2_btn.text = \"Level 2\\n🔒\"
+	
+	# LEVEL 3: Available if Unlocked OR Completed
+	if Global.is_level_unlocked(3) or Global.is_level_completed(3):
+		level3_btn.disabled = false
+		if Global.is_level_completed(3):
+			level3_btn.text = \"Level 3\\nNighttime\\n✓ Complete\"
+		else:
+			level3_btn.text = \"Level 3\\nNighttime\"
+	else:
+		level3_btn.disabled = true
+		level3_btn.text = \"Level 3\\n🔒\"
+
+func load_level(level_num: int):
+	# Set the current level in Global so the player knows where they are
+	Global.current_level = level_num
+	
+	# Skip cutscene if already completed once
+	if Global.is_level_completed(level_num):
+		get_tree().change_scene_to_file(level_scenes[level_num])
+	else:
+		get_tree().change_scene_to_file(level_cutscenes[level_num])
+
+func check_all_complete():
+	# If all 3 levels are done, show the big \"Section Complete\" text
+	if Global.is_level_completed(1) and Global.is_level_completed(2) and Global.is_level_completed(3):
+		all_complete_label.visible = true
+		all_complete_label.text = \"Childhood Stage Complete!\"
+
+func _on_back_pressed():
+	get_tree().change_scene_to_file(\"res://menus/main_menu.tscn\")
+"
+
+[node name="ChildLevelSelect" type="Control" unique_id=804885501]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_knk2d")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2128894155]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 649.0
+color = Color(0.4887237, 0.00053145975, 0.57336384, 1)
+
+[node name="Level1Button" type="Button" parent="." unique_id=1369614253]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_left = 350.0
+offset_top = 200.0
+offset_right = 450.0
+offset_bottom = 300.0
+theme_override_fonts/font = ExtResource("1_2oj7f")
+
+[node name="Level2Button" type="Button" parent="." unique_id=1960288056]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 200.0
+offset_right = 650.0
+offset_bottom = 300.0
+theme_override_fonts/font = ExtResource("1_2oj7f")
+
+[node name="Level3Button" type="Button" parent="." unique_id=491476393]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 200.0
+offset_right = 850.0
+offset_bottom = 300.0
+theme_override_fonts/font = ExtResource("1_2oj7f")
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1151351342]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 156.0
+offset_right = 866.0
+offset_bottom = 179.0
+
+[node name="BackButton" type="Button" parent="." unique_id=789234972]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 500.0
+offset_right = 650.0
+offset_bottom = 550.0
+theme_override_fonts/font = ExtResource("1_2oj7f")
+text = "Back"
+
+[node name="AllCompleteLabel" type="Label" parent="." unique_id=1867917889]
+layout_mode = 0
+offset_left = 429.0
+offset_top = 81.0
+offset_right = 771.0
+offset_bottom = 157.0
+theme_override_fonts/font = ExtResource("1_2oj7f")
+theme_override_font_sizes/font_size = 32
+text = "Section 1"
+horizontal_alignment = 1
+vertical_alignment = 1

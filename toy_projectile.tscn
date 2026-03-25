@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bjndixhvfgnef"]
+
+[ext_resource type="Script" uid="uid://dnuy7jddt2gkl" path="res://ToyProjectile.gd" id="1_h7tww"]
+[ext_resource type="Texture2D" uid="uid://dtkdr7hrbvruh" path="res://brackeys_platformer_assets (2)/sprites/toy.png" id="2_pljbw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d75rb"]
+radius = 168.31519
+
+[node name="ToyProjectile" type="Area2D" unique_id=547613581]
+script = ExtResource("1_h7tww")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=382999184]
+texture = ExtResource("2_pljbw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=67361829]
+shape = SubResource("CircleShape2D_d75rb")

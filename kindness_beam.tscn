@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cnm3yfe8b7gxn"]
+
+[ext_resource type="Script" uid="uid://pdsibq7vn6pd" path="res://kindness_beam.gd" id="1_q8pgq"]
+[ext_resource type="Texture2D" uid="uid://dygoi0hy43k10" path="res://brackeys_platformer_assets (2)/sprites/heart.png" id="2_lds6x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t1ol5"]
+radius = 12.0415945
+
+[node name="KindnessBeam" type="Area2D" unique_id=894336357]
+script = ExtResource("1_q8pgq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=508462664]
+position = Vector2(-57.5, 41.5)
+scale = Vector2(0.05175292, 0.050359722)
+texture = ExtResource("2_lds6x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=594181097]
+position = Vector2(-59, 40)
+shape = SubResource("CircleShape2D_t1ol5")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
