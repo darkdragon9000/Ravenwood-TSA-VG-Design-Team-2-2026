@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bgjod8url8lhf"]
+
+[ext_resource type="Script" uid="uid://do5q6u00yledn" path="res://video_cutscene.gd" id="1_o43ba"]
+
+[node name="VideoCutscene" type="Control" unique_id=827568022]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o43ba")
+video_path = "uid://cjlygbk31udsu"
+next_scene = "res://child_level_select.tscn"
+total_video_duration = 4.5
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=962359535]
+layout_mode = 0
+offset_right = 1149.0
+offset_bottom = 647.0
+color = Color(0, 0, 0, 1)
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1248420230]
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 648.0
+expand = true
